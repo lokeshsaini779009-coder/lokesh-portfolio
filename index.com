@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokesh Saini | Personal Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 0, 0, 0.08), transparent 40%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 128, 255, 0.08), transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 50%);
+            z-index: -1;
+            animation: glow 8s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #ff4b4b, #ff7a00, #ff4b4b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            color: #8b949e;
+            font-size: 1.1rem;
+        }
+
+        /* Profile avatar */
+        .avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #ff4b4b, #0077b5);
+            padding: 4px;
+            animation: pulse 2s infinite;
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #0d1117;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff4b4b;
+        }
+
+        /* Cards / sections */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 40px 0 20px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff4b4b, #ff7a00);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Social links */
+        .social-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            color: inherit;
+        }
+
+        .social-card:hover {
+            transform: translateY(-4px);
+            border-color: #ff4b4b;
+            box-shadow: 0 8px 25px rgba(255, 75, 75, 0.2);
+        }
+
+        .social-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .youtube-icon {
+            background: rgba(255, 0, 0, 0.15);
+            color: #ff0000;
+        }
+
+        .instagram-icon {
+            background: linear-gradient(45deg, rgba(255, 221, 0, 0.15), rgba(255, 0, 128, 0.15), rgba(0, 128, 255, 0.15));
+            color: #ff2d78;
+        }
+
+        .email-icon {
+            background: rgba(77, 160, 255, 0.15);
+            color: #4da0ff;
+        }
+
+        .social-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .social-info p {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            margin-left: auto;
+            color: #8b949e;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-card:hover .arrow {
+            transform: translateX(5px);
+            color: #ff4b4b;
+        }
+
+        /* About section */
+        .about-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+        }
+
+        .about-card h3 {
+            color: #ff4b4b;
+            margin-bottom: 10px;
+        }
+
+        .about-card p {
+            color: #8b949e;
+            line-height: 1.7;
+        }
+
+        /* Skills badges */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-badge {
+            background: #21262d;
+            border: 1px solid #30363d;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #e6edf3;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            border-color: #ff4b4b;
+            cursor: pointer;
+        }
+
+        /* Contact section */
+        .contact-form {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 8px 0;
+            color: #e6edf3;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #ff4b4b;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #ff4b4b, #ff7a00);
+            border: none;
+            color: white;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #8b949e;
+            font-size: 0.9rem;
+            margin-top: 50px;
+            border-top: 1px solid #30363d;
+            width: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 2rem; }
+            .avatar { width: 100px; height: 100px; }
+            .avatar-inner { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Lokesh Saini</h1>
+        <p>Content Creator | YouTuber | Instagrammer</p>
+    </header>
+
+    <!-- Avatar -->
+    <div class="avatar">
+        <div class="avatar-inner">LS</div>
+    </div>
+
+    <main class="container">
+
+        <!-- Social Links Section -->
+        <h2 class="section-title">👥 Social Media</h2>
+
+        <!-- YouTube -->
+        <a href="https://youtube.com/@lokeshsaini_398?si=xjr02Mf_yaL6iWnz" 
+           target="_blank" class="social-card">
+            <div class="social-icon youtube-icon">▶️</div>
+            <div class="social-info">
+                <h3>YouTube Channel</h3>
+                <p>@lokeshsaini_398</p>
+            </div>
+            <span class="arrow">→</span>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/lokeshsaini_77?igsh=MTlodnptOG0wZ3F5ZA==" 
+           target="_blank" class="social-card">
+            <div class="social-icon instagram-icon">📸</div>
+            <div class="social-info">
+                <h3>Instagram Profile</h3>
+                <p>@lokeshsaini_77</p>
+            </div>
+            <span class="arrow">→</span>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:lokeshsaini779009@gmail.com" class="social-card">
+            <div class="social-icon email-icon">✉️</div>
+            <div class="social-info">
+                <h3>Email</h3>
+                <p>lokeshsaini779009@gmail.com</p>
+            </div>
+            <span class="arrow">→</span>
+        </a>
+
+        <!-- About Me Section -->
+        <h2 class="section-title">ℹ️ About Me</h2>
+
+        <div class="about-card">
+            <h3>Namaste 🙏</h3>
+            <p>
+                Main <strong>Lokesh Saini</strong> hoon. Main apne YouTube channel
+                aur Instagram par content create karta hoon. Aapke support se
+                mujhe bahut motivation milta hai! Mere content ko like, share 
+                aur subscribe karna na bhoole. ❤️
+            </p>
+
+            <div class="skills">
+                <span class="skill-badge">🎥 Vlogging</span>
+                <span class="skill-badge">📱 Shorts</span>
+                <span class="skill-badge">🔄 Reels</span>
+                <span class="skill-badge">💡 Inspiration</span>
+                <span class="skill-badge">🎵 Music</span>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <h2 class="section-title">📩 Contact Me</h2>
+
+        <div class="contact-form">
+            <input type="text" placeholder="Aapka Naam">
+            <input type="email" placeholder="Aapka Email">
+            <textarea rows="4" placeholder="Aapka Message..."></textarea>
+            <button class="btn-submit">Send Message</button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2026 Lokesh Saini | Made with ❤️
+    </footer>
+
+</body>
+</html>
